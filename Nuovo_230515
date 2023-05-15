@@ -1,0 +1,58 @@
+#짝지어 제거하기) 
+#문자열 슬라이싱으로 제거, 15분 걸림 but 시간제한
+def solution(s):
+    answer = 0
+    i = 0
+    while (len(s) != 0) and (i < len(s)-1):
+        t1 = s[i]
+        t2 = s[i+1]
+        if t1 == t2:
+            s = s[:i] + s[i+2:]
+            i = 0          
+        else:
+            i += 1
+    if len(s) == 0:
+        answer = 1
+    return answer
+
+#stack의 개념 가져오기, 10분걸림, 왜 이건 시간제한 안걸리는지 잘 모르겠음..
+ def solution(s):
+    answer = 0
+    txt = []
+    txt.append(s[0])
+    for i in range(1, len(s)):
+        txt.append(s[i])
+        print(txt)
+        if len(txt)>1:
+          if txt[-1] == txt[-2]:
+              txt.pop(-1)
+              txt.pop(-1)
+    if len(txt) == 0:
+        answer = 1
+    return answer
+    
+#크기가 작은 부분 문자열)
+#5분걸림, if문에 바로 t[i:i+len(p)]써도 됐음
+def solution(t, p):
+    answer = 0
+    for i in range(len(t)-len(p)+1):
+        txt = t[i:i+len(p)]
+        if int(txt)<=int(p):
+            answer+=1
+    return answer
+    
+#이상한 문자열 만들기)
+#15분 걸림
+def solution(s):
+    answer = ''
+    txt = s.split(' ')
+    for i in range(len(txt)):
+        new_t = ''
+        for j in range(len(txt[i])):
+            if j%2 == 0:
+                new_t += txt[i][j].upper()                
+            else:
+                new_t += txt[i][j].lower()
+        txt[i] = new_t
+    answer = ' '.join(txt)
+    return answer
