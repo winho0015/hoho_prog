@@ -1,0 +1,21 @@
+#추억 점수, 15분
+def solution(name, yearning, photo):
+    answer = []
+    sum = 0
+    for j in range(len(photo)):
+        for i in range(len(name)):
+            if name[i] in photo[j]:
+                sum += yearning[i]
+        answer.append(sum)
+        sum = 0
+    return answer
+    
+ #간단한 식 계산하기, 15분
+def solution(binomial):
+    if '+' in binomial:
+        answer = int(binomial.split('+')[0]) + int(binomial.split('+')[1])
+    elif '-' in binomial:
+        answer = int(binomial.split('-')[0]) - int(binomial.split('-')[1])
+    elif '*' in binomial:
+        answer = int(binomial.split('*')[0]) * int(binomial.split('*')[1])
+    return answer
