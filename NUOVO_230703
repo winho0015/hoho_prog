@@ -1,0 +1,22 @@
+#다음 큰 숫자
+
+def solution(n):
+    num1 = format(n, 'b').count('1')
+    answer = n+1
+    num2 = format(answer, 'b').count('1')
+    while num2 != num1:
+        answer += 1
+        num2 = format(answer, 'b').count('1')
+    return answer
+
+#두 개 뽑아서 더하기
+
+def solution(numbers):
+    answer = []
+    for x in range(len(numbers)):
+        for y in range(len(numbers)):
+            if x!=y:               
+                if numbers[x]+numbers[y] not in answer:
+                    answer.append(numbers[x]+numbers[y])
+    answer.sort()
+    return answer
