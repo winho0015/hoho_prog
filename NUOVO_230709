@@ -1,0 +1,20 @@
+#멀리 뛰기_1 #시간초과
+import itertools
+
+def solution(n):
+    answer = 0
+    for i in range(n//2+1):
+        com = len(list(itertools.combinations([0]*(n-i),i)))
+        answer += com
+    answer = answer % 1234567
+    return answer
+
+#멀리 뛰기_2 #성공
+import math
+
+def solution(n):
+    answer = 0
+    for i in range(n//2+1):
+        answer += math.comb(n-i,i)
+    answer = answer % 1234567
+    return answer
