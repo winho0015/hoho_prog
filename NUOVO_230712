@@ -1,0 +1,59 @@
+#문자열 안에 문자열
+def solution(str1, str2):
+    if str2 in str1:
+        answer = 1
+    else:
+        answer = 2
+    return answer
+
+#문자열 안에 문자열 #다른 사람의 풀이1
+def solution(str1, str2):
+    return 1 if str2 in str1 else 2
+
+#문자열 안에 문자열 #다른 사람의 풀이2
+def solution(str1, str2):
+    return 1 + int(str2 not in str1)
+
+#모의고사
+def solution(answers):
+    answer = []
+    p1 = [1, 2, 3, 4, 5]
+    p2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    p3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    a1, a2, a3 = 0, 0, 0
+    for i in range(len(answers)):
+        if answers[i] == p1[i%len(p1)]:
+            a1 += 1
+        if answers[i] == p2[i%len(p2)]:
+            a2 += 1
+        if answers[i] == p3[i%len(p3)]:
+            a3 += 1
+    if a1 == max([a1, a2, a3]):
+        answer.append(1)
+    if a2 == max([a1, a2, a3]):
+        answer.append(2)
+    if a3 == max([a1, a2, a3]):
+        answer.append(3)
+    return answer
+
+#모의고사 #다른사람의 풀이, enumerate 활용
+def solution(answers):
+    pattern1 = [1,2,3,4,5]
+    pattern2 = [2,1,2,3,2,4,2,5]
+    pattern3 = [3,3,1,1,2,2,4,4,5,5]
+    score = [0, 0, 0]
+    result = []
+
+    for idx, answer in enumerate(answers):
+        if answer == pattern1[idx%len(pattern1)]:
+            score[0] += 1
+        if answer == pattern2[idx%len(pattern2)]:
+            score[1] += 1
+        if answer == pattern3[idx%len(pattern3)]:
+            score[2] += 1
+
+    for idx, s in enumerate(score):
+        if s == max(score):
+            result.append(idx+1)
+
+    return result
