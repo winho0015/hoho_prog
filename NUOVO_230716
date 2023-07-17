@@ -59,6 +59,7 @@ def solution(answers):
     return result
 
 #기능개발 #오류, colab에서는 문제없는데 프로그래머스에서 오류가 계속 발생 #추후 확인 예정
+#열맞춤 오류 #오류는 해결했는데 채점 결과 답이 몇개 틀림 + 시간 복잡
 def solution(progresses, speeds):
     answer = []
     comp = []
@@ -78,5 +79,23 @@ def solution(progresses, speeds):
             else:
                 target += 1
                 break
+        answer.append(count)
+    return answer
+
+#기능개발 #chatGPT 도움 #개발 완료에 필요한 일자를 받아오는 리스트 활용
+import math
+
+def solution(progresses, speeds):
+    answer = []
+    days = [math.ceil((100-p)/s) for p, s in zip(progresses, speeds)]
+    max_day = days[0]
+    count = 1
+    for day in days[1:]:
+        if max_day >= day:
+            count += 1
+        else:
             answer.append(count)
+            max_day = day
+            count = 1
+    answer.append(count)
     return answer
