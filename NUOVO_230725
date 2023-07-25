@@ -1,0 +1,41 @@
+#숫자 문자열과 영단어 #s = s.replace()
+def solution(s):
+    numbers = ["zero", "one", "two", "three", "four", "five","six", "seven", "eight", "nine"]
+    for number in numbers:
+        if number in s:
+            s = s.replace(number, str(numbers.index(number)))
+    return int(s)
+#숫자 문자열과 영단어 #if문 삭제, enumerate 사용
+def solution(s):
+    numbers = ["zero", "one", "two", "three", "four", "five","six", "seven", "eight", "nine"]
+    for i, number in enumerate(numbers):
+        s = s.replace(number, str(i))
+    return int(s)
+
+#직사각형 넓이 구하기 #중복처리는 set()
+def solution(dots):
+    x = list(set(dots[i][0] for i in range(len(dots))))
+    y = list(set(dots[i][1] for i in range(len(dots))))
+    dx = abs(x[0] - x[1])
+    dy = abs(y[0] - y[1])
+    answer = dx * dy
+    return answer
+
+#직사각형 넓이 구하기 #max(), min() 활용
+def solution(dots):
+    return (max(dots)[0]-min(dots)[0]) * (max(dots)[1]-min(dots[1]))
+
+#안전지대
+def solution(board):
+    answer = 0
+    for n in range(len(board)):
+        for m in range(len(board)):
+            if board[n][m] == 1:
+                for i in [-1, 0, 1]:
+                    for j in [-1, 0, 1]:
+                        if 0 <= (n+i) < len(board) and 0 <= (m+j) < len(board):
+                            if board[n+i][m+j] != 1:
+                                board[n+i][m+j] = 2
+    for n in range(len(board)):
+        answer += board[n].count(0)
+    return answer
