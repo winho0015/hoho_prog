@@ -1,0 +1,64 @@
+# 소수 만들기
+# 3중 for문 사용해서 시간초과 나올 줄 알았는데 안나와서 다행이다
+def solution(nums):
+    cnt = 0
+    lst = []
+
+    for i in range(len(nums)-2):
+        for j in range(i+1, len(nums)-1):
+            for k in range(j+1, len(nums)):
+                lst.append(nums[i] + nums[j] + nums[k])
+
+    for x in lst:
+        for i in range(2, x):
+            if x % i == 0:
+                cnt += 1
+                break
+    answer = len(lst)-cnt
+    return answer
+
+# 소수 만들기 # for else 문 # combinations
+def solution(nums):
+    from itertools import combinations as cb
+    answer = 0
+    for a in cb(nums, 3):
+        cand = sum(a)
+        for j in range(2, cand):
+            if cand%j==0:
+                break
+        else:
+            answer += 1
+    return answer
+
+
+# 프로세스 # max 사용
+def solution(priorities, location):
+    process = []
+    for p in enumerate(priorities):
+        process.append(p)
+    answer = 0
+    while True:
+        max_num = max(process, key = lambda x: x[1])
+        q = process.pop(0)
+
+        if q[1] < max_num[1]:
+            process.append(q)
+
+        elif q[1] == max_num[1]:
+            answer += 1    
+            if q[0] == location:
+                break
+    return answer
+
+# 프로세스 # 다른사람의 풀이 # any 사용
+def solution(priorities, location):
+    queue =  [(i,p) for i,p in enumerate(priorities)]
+    answer = 0
+    while True:
+        cur = queue.pop(0)
+        if any(cur[1] < q[1] for q in queue):
+            queue.append(cur)
+        else:
+            answer += 1
+            if cur[0] == location:
+                return answer
